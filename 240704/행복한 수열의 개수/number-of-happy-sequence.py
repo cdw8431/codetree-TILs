@@ -11,9 +11,16 @@ def get_happy_sequence_count(pivot) -> int:
         for j in range(n):
             row = i if pivot == 'row' else j
             col = j if pivot == 'row' else i
+
             current_num = sequences[row][col]
-            if not nums or nums and nums[-1] == current_num:
+            if not nums:
                 nums.append(current_num)
+            else:
+                if nums[-1] == current_num:
+                    nums.append(current_num)
+                else:
+                    nums = [current_num]
+
             if len(nums) == m:
                 result += 1
                 break
