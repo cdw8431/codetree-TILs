@@ -27,14 +27,13 @@ for row in range(n):
     for col in range(m):
         if col + 1 >= m:
             break
-        box = deque([(0,0), (0,1), (1,1), (1,0)])
-        box_nums = []
-        for _ in range(4):
-            box_nums.append(sum(matrix[row+box[i][0]][col+box[i][1]] for i in range(3)))
-            box.append(box.popleft())
-
-        max_box_num = max(box_nums)
-        if max_box_num > max_num:
+        max_box_num = max([
+            matrix[row+0][col+0] + matrix[row+0][col+1] + matrix[row+1][col+1],
+            matrix[row+0][col+1] + matrix[row+1][col+1] + matrix[row+1][col+0],
+            matrix[row+1][col+1] + matrix[row+1][col+0] + matrix[row+0][col+0],
+            matrix[row+1][col+0] + matrix[row+0][col+0] + matrix[row+0][col+1]
+        ])
+        if max_box_num >= max_num:
             max_num = max_box_num
 
 print(max_num)
