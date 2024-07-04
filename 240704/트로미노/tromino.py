@@ -29,7 +29,7 @@ for row in range(n):
         _2x2 = [
             matrix[row][col],
             matrix[row][col+1],
-            matrix[row][col+1],
+            matrix[row+1][col],
             matrix[row+1][col+1]
         ]
         sum_num = sum(_2x2)
