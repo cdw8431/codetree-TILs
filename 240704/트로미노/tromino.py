@@ -1,3 +1,5 @@
+from collections import deque
+
 n, m = [int(num) for num in input().split()]
 matrix = [[int(num) for num in input().split()] for _ in range(n)]
 
@@ -25,14 +27,14 @@ for row in range(n):
     for col in range(m):
         if col + 1 >= m:
             break
-        box_pattern = [(0,0), (0,1), (1,1), (1,0)]
+        box = deque([(0,0), (0,1), (1,1), (1,0)])
         box_nums = []
         for _ in range(4):
-            box_num = sum([matrix[row+idx[0]][col+idx[1]] for idx in box_pattern[:3]])
-            box_nums.append(box_num)
-            box_pattern = [box_pattern[-1], *box_pattern[:3]]
+            box_nums.append(sum(matrix[row+box[i][0]][col+box[i][1]] for i in range(3)))
+            box.append(box.popleft())
 
-        if max(box_nums) > max_num:
-            max_num = box_num
+        max_box_num = max(box_nums)
+        if max_box_num > max_num:
+            max_num = max_box_num
 
 print(max_num)
