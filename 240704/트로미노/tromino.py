@@ -25,12 +25,16 @@ for row in range(n):
     for col in range(m):
         if col + 1 >= m:
             break
-        box_num = max([
-            matrix[row][col] + matrix[row][col+1] + matrix[row+1][col+1],
-            matrix[row][col+1] + matrix[row+1][col+1] + matrix[row+1][col],
-            matrix[row+1][col+1] + matrix[row+1][col] + matrix[row][col],
-            matrix[row+1][col] + matrix[row][col] + matrix[row][col+1]
-        ])
+
+        _2x2 = [
+            matrix[row][col],
+            matrix[row][col+1],
+            matrix[row][col+1],
+            matrix[row+1][col+1]
+        ]
+        sum_num = sum(_2x2)
+        box_num = max([sum_num - num for num in _2x2])
+
         if box_num >= max_num:
             max_num = box_num
 
