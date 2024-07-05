@@ -16,7 +16,7 @@ max_gold = 0
 for row in range(n):
     for col in range(n):
         for k in range(max_k):
-            gold = mining_gold(row, col, k+1)
+            gold = mining_gold(row, col, k)
 
             pay = k * k + (k + 1) * (k + 1)
             gold_price = gold * m
