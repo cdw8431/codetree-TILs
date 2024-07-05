@@ -1,7 +1,7 @@
 n, m = [int(num) for num in input().split()]
 matrix = [[int(num) for num in input().split()] for _ in range(n)]
 
-max_k = int((n - 1) / 2)
+max_k = 2 * (n - 1) + 1
 
 def mining_gold(row, col, k):
     gold = 0
